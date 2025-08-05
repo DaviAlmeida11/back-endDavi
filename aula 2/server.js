@@ -4,6 +4,14 @@
  * Data: 30/07
  * Versão: 1.0
  **************************************************************************************************************************************************************************************************/
+const MESSAGE_ERROR_EMPYTY = 'Não foi possivel concluir a média, pois algum dos campos não foram preenchidos completamente!'
+const MESSAGE_ERROR_OUT_OF_REAGE = 'Dados não compativeis'
+const MESSAGE_ERROR_NAN = 'Não pode ter a entrada de letras nesses campos'
+const MESSAGE_ERROR_NAME = 'não pode colocar'
+
+
+
+
 //No java script pode ter 3 formas de criar uma variavel o VAR, LET e o CONST cria uma constante, quando não possue mudança no código utiliza o CONST, ja com mudança pode usar LET e VAR(forma mais antiga de fazer)
 
 //LET: Tudo que é criado tento dos blocos(que são isso {}) tem q utilizar LET, por exemplo: if, loop, etc /  permite criar um espaço em memória, essas variaveis morrem ao termino do bloco 
@@ -78,9 +86,17 @@ entradaDeDados.question('digite o nome do Aluno: ', function(nome){
                    let nota4 = valor4
                        //Se o nome e as notas não vierem nada aparece a mensagem de erro
                     if(nome == '' || nota1 == '' || nota2 == '' || nota3 == '' || nota4 == '' ){
-                        console.log('Não foi possivel concluir a média, pois algum dos campos não foram preenchidos completamente!')
-                    }else if(nota1 < 0 || nota1 > 10 || nota2 < 0 || nota2 > 10 || nota3 < 0 || nota3 > 10 || nota4 <0 || nota4 >10 ){
-                      console.log('Dados não compativeis')  
+                        console.log(MESSAGE_ERROR_EMPYTY)
+                    }else if(!isNaN (nome)){
+                        console.log(MESSAGE_ERROR_NAME)
+                        //validação para dexar os número entre 0 e 10
+                    }else if(   Number(nota1) < 0 || Number(nota1) > 10 ||
+                                Number(nota2) < 0 || Number(nota2) > 10 ||
+                                Number(nota3) < 0 || Number(nota3) > 10 ||
+                                Number(nota4) <0 || Number(nota4)>10 ){
+                      console.log(MESSAGE_ERROR_OUT_OF_REAGE)  
+                    }else if(isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(nota4)){
+                        console.log(MESSAGE_ERROR_NAN)
                     }else{
                         let media = (Number(nota1) + Number(nota2) + Number(nota3) + Number(nota4) / 4)
                         if (media < 5 ){
